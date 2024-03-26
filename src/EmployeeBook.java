@@ -234,4 +234,28 @@ public class EmployeeBook {
         }
         printListOfEmployees(employee);
     }
+
+    public void deleteEmployee(Employee[] employee, int ID) {
+        for (int i = 0; i < employee.length; i++) {
+            if (employee[i].getId() != ID){
+                continue;
+            }
+            if (employee[i].getId() == ID) {
+                employee[i] = null;
+                System.out.println("Сотрудник с ID " + ID + " удален.");
+            } if (ID >= employee.length){
+                System.out.println("Сотрудник не найден.");
+            }
+        }
+    }
+
+    public void findEmployee(Employee[] employee, int ID){
+        String name = "";
+        for (int i = 0; i < employee.length; i++) {
+            if (employee[i].getId() == ID){
+                name = employee[i].getFullName();
+            }
+        }
+        System.out.println("Сотрудник с номером ID " + ID + " - " + name + ".");
+    }
 }
