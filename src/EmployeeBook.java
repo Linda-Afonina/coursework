@@ -211,21 +211,14 @@ public class EmployeeBook {
         }
     }
 
-    public void addEmployee() {
-        int count = 0;
+    public boolean addEmployee() {
         for (int i = 0; i < employee.length; i++) {
             if (employee[i] == null) {
-                employee[i] = new Employee("Москвин Павел Юрьевич", 1, 92790);
-                System.out.println("Сотрудник успешно добавлен.");
-                break;
-            }
-            if (employee[i] != null) {
-                ++count;
-            }
-            if (count == employee.length) {
-                System.out.println("Нельзя добавить сотрудника, штат полный.");
+                employee[i] = new Employee("Москвин Павел Владимирович", 1, 96650);
+                return true;
             }
         }
+        return false;
     }
 
     public void deleteEmployee(int ID) {

@@ -30,10 +30,12 @@ public class Main {
         EmployeeBook.printSeparator();
         employee.printSalaryMoreOrEquallyParameter(85000);
         EmployeeBook.printSeparator();
-        employee.addEmployee();
+        System.out.println(employee.addEmployee());
         employee.deleteEmployee(8);
-        employee.addEmployee();
+        System.out.println(employee.addEmployee());
         employee.findEmployee(4);
+        EmployeeBook.printSeparator();
+        employee.printListOfEmployees();
     }
 
 
