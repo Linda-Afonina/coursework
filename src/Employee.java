@@ -26,6 +26,10 @@ public class Employee {
         return this.salary;
     }
 
+    public int getId() {
+        return this.id;
+    }
+
     public void setDepartment(int department) {
         this.department = department;
     }
@@ -50,6 +54,6 @@ public class Employee {
 
     @Override
     public String toString() {
-        return "id " + id + ". Сотрудник: " + fullName + ", отдел: " + department + ", зарплата: " + salary;
+        return "ID " + id + ", " + fullName + ", отдел: " + department + ", зарплата: " + salary;
     }
 }

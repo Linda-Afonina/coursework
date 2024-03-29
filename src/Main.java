@@ -28,6 +28,21 @@ public class Main {
         System.out.println();
         printSeparator();
         printFullNameOfEmployees(employee);
+        printSeparator();
+        increaseSalary(employee, 5);
+        printSeparator();
+        minSalaryInDepartment(employee, 4);
+        maxSalaryInDepartment(employee, 4);
+        calculateSumOfSalaryInDepartment(employee, 4);
+        mediumSalaryInDepartment(employee, 4);
+        printSeparator();
+        increaseSalaryInDepartment(employee, 4, 3);
+        printSeparator();
+        printEmployeesInDepartment(employee, 4);
+        printSeparator();
+        printSalaryLessParameter(employee, 85000);
+        printSeparator();
+        printSalaryMoreOrEquallyParameter(employee, 85000);
     }
 
     public static void printListOfEmployees(Employee[] employee) {
@@ -93,5 +108,136 @@ public class Main {
 
     public static void printSeparator() {
         System.out.println("=========================");
+    }
+
+    public static void increaseSalary(Employee[] employee, int percent) {
+        double increaseSalary;
+        double increasePercent = (double) percent / 100;
+        System.out.println("ЗП сотрудников после индексации на " + percent + "%:");
+        for (int i = 0; i < employee.length; i++) {
+            if (employee[i] == null) {
+                continue;
+            }
+            increaseSalary = employee[i].getSalary() + employee[i].getSalary() * increasePercent;
+            System.out.println(employee[i].getFullName() + " - " + increaseSalary + " рублей.");
+        }
+    }
+
+    public static void minSalaryInDepartment(Employee[] employee, int department) {
+        int minSalaryInDepartment = maxSalary(employee);
+        String name = employee[0].getFullName();
+        for (int i = 0; i < employee.length; i++) {
+            if (employee[i] == null) {
+                continue;
+            }
+            if (employee[i].getDepartment() == department && employee[i].getSalary() < minSalaryInDepartment) {
+                minSalaryInDepartment = employee[i].getSalary();
+                name = employee[i].getFullName();
+            }
+        }
+        System.out.println("Сотрудник с минимальной ЗП в " + department + " отделе - " + name + ", ЗП - "
+                + minSalaryInDepartment + " рублей");
+    }
+
+    public static void maxSalaryInDepartment(Employee[] employee, int department) {
+        int maxSalaryInDepartment = minSalary(employee);
+        String name = employee[0].getFullName();
+        for (int i = 0; i < employee.length; i++) {
+            if (employee[i] == null) {
+                continue;
+            }
+            if (employee[i].getDepartment() == department && employee[i].getSalary() > maxSalaryInDepartment) {
+                maxSalaryInDepartment = employee[i].getSalary();
+                name = employee[i].getFullName();
+            }
+        }
+        System.out.println("Сотрудник с максимальной ЗП в " + department + " отделе - " + name + ", ЗП - "
+                + maxSalaryInDepartment + " рублей");
+    }
+
+    public static void calculateSumOfSalaryInDepartment(Employee[] employee, int department) {
+        int sumInDepartment = 0;
+        for (int i = 0; i < employee.length; i++) {
+            if (employee[i] == null) {
+                continue;
+            }
+            if (employee[i].getDepartment() == department) {
+                sumInDepartment = sumInDepartment + employee[i].getSalary();
+            }
+        }
+        System.out.println("Сумма затрат на ЗП по " + department + " отделу: " + sumInDepartment + " рублей.");
+    }
+
+    public static void mediumSalaryInDepartment(Employee[] employee, int department) {
+        double mediumSalary;
+        int sumInDepartment = 0;
+        int count = 0;
+        for (int i = 0; i < employee.length; i++) {
+            if (employee[i] == null) {
+                continue;
+            }
+            if (employee[i].getDepartment() == department) {
+                sumInDepartment = sumInDepartment + employee[i].getSalary();
+                ++count;
+            }
+        }
+        mediumSalary = (double) sumInDepartment / count;
+        System.out.println("Средняя ЗП по " + department + "-му отделу: " + mediumSalary + " рублей.");
+    }
+
+    public static void increaseSalaryInDepartment(Employee[] employee, int department, int percent) {
+        double increaseSalary;
+        double increasePercent = (double) percent / 100;
+        String name;
+        System.out.println("ЗП сотрудников " + department + "-го отдела после индексации на " + percent + "%:");
+        for (int i = 0; i < employee.length; i++) {
+            if (employee[i] == null) {
+                continue;
+            }
+            if (employee[i].getDepartment() == department) {
+                increaseSalary = employee[i].getSalary() + employee[i].getSalary() * increasePercent;
+                name = employee[i].getFullName();
+                System.out.println(name + " - " + increaseSalary + " рублей.");
+            }
+        }
+    }
+
+    public static void printEmployeesInDepartment(Employee[] employee, int department) {
+        System.out.println("Список сотрудников " + department + " отдела:");
+        for (int i = 0; i < employee.length; i++) {
+            if (employee[i] == null) {
+                continue;
+            }
+            if (employee[i].getDepartment() == department) {
+                System.out.println("ID " + employee[i].getId() + ", " + employee[i].getFullName() +
+                        ", ЗП - " + employee[i].getSalary() + " рублей.");
+            }
+        }
+    }
+
+    public static void printSalaryLessParameter(Employee[] employee, int parameter) {
+        System.out.println("Список сотрудников с ЗП ниже " + parameter + " рублей:");
+        for (int i = 0; i < employee.length; i++) {
+            if (employee[i] == null) {
+                continue;
+            }
+            if (employee[i].getSalary() < parameter) {
+                System.out.println("ID " + employee[i].getId() + ", " + employee[i].getFullName() +
+                        ", ЗП - " + employee[i].getSalary() + " рублей.");
+            }
+        }
+    }
+
+    public static void printSalaryMoreOrEquallyParameter(Employee[] employee, int parameter) {
+        System.out.println("Список сотрудников с ЗП выше " + parameter + " рублей:");
+        for (int i = 0; i < employee.length; i++) {
+            if (employee[i] == null) {
+                continue;
+            }
+            if (employee[i].getSalary() >= parameter) {
+                System.out.println("ID " + employee[i].getId() + ", " + employee[i].getFullName() +
+                        ", ЗП - " + employee[i].getSalary() + " рублей.");
+            }
+        }
     }
 }
