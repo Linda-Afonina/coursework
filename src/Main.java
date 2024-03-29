@@ -30,13 +30,11 @@ public class Main {
         EmployeeBook.printSeparator();
         employee.printSalaryMoreOrEquallyParameter(85000);
         EmployeeBook.printSeparator();
-        System.out.println(employee.addEmployee());
+        System.out.println(employee.addEmployee("Москвин Павел Юрьевич", 1, 92570));
         employee.deleteEmployee(8);
-        System.out.println(employee.addEmployee());
+        System.out.println(employee.addEmployee("Москвин Павел Юрьевич", 1, 92570));
         employee.findEmployee(4);
         EmployeeBook.printSeparator();
         employee.printListOfEmployees();
     }
-
-
 }

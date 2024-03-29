@@ -211,12 +211,20 @@ public class EmployeeBook {
         }
     }
 
-    public boolean addEmployee() {
+    public boolean addEmployee(String fullName, int department, int salary) {
+        int count = 0;
         for (int i = 0; i < employee.length; i++) {
             if (employee[i] == null) {
-                employee[i] = new Employee("Москвин Павел Владимирович", 1, 96650);
+                employee[i] = new Employee(fullName, department, salary);
+                System.out.println("Сотрудник успешно добавлен!");
                 return true;
             }
+            if (employee[i] != null) {
+                    ++count;
+                }
+            if (count == employee.length) {
+                    System.out.println("Невозможно добавить. Штат полный.");
+                }
         }
         return false;
     }
